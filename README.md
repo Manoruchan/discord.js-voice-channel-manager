@@ -19,11 +19,7 @@ then use import or require to get module.
 ```js
 const { VoiceChannelManager } = require("./VoiceChannelManager.js")
 
-const {
-    Client,
-    GatewayIntentBits,
-    PermissionFlagsBits
-} = require("discord.js")
+const { Client, GatewayIntentBits } = require("discord.js")
 
 const client = new Client({
     intents: [
