@@ -11,7 +11,7 @@ Manager will provide handler of Join and Leave event.
 # Usage
 
 Please create javascript file named "VoiceChannelManager".
-And copy &amp; paste [code](),
+And copy &amp; paste [code](https://github.com/PriestessSakuraka/discord.js-voice-channel-manager/blob/main/VoiceChannelManager.js),
 then use import or require to get module.
 
 # Example of usage
