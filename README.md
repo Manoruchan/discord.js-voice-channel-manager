@@ -50,4 +50,4 @@ client.login("your token here 0w0")
 
 # Note
 
-Method findCh will get a topic of channels.
+Method findCh will find a topic of channels.
