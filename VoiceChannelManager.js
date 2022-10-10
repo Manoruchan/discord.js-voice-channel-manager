@@ -8,6 +8,7 @@ const VoiceChannelManager = class {
             old: this.oldState,
             new: this.newState,
             channel: state.guild.channels.cache.get(state.channelId)
+            findCh: value => this.findCh(state, value)
         })
     }
 
