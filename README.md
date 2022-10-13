@@ -36,12 +36,12 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 
     VoiceState.onJoin(state => {
         if (!state.channel.name.startsWith(channel_prefix)) return
-        state.findCh(state.channel.name).permissionOverwrites.edit(state.new.id, { ViewChannel: true })
+        state.findTopic(state.channel.name).permissionOverwrites.edit(state.new.id, { ViewChannel: true })
     })
 
     VoiceState.onLeave(state => {
         if (!state.channel.name.startsWith(channel_prefix)) return
-        state.findCh(state.channel.name).permissionOverwrites.edit(state.old.id, { ViewChannel: null })
+        state.findTopic(state.channel.name).permissionOverwrites.edit(state.old.id, { ViewChannel: null })
     })
 })
 
