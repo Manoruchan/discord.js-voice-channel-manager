@@ -45,7 +45,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
     })
 })
 
-client.login("your token here 0w0")
+client.login("token here 0w0")
 ```
 
 # Note
