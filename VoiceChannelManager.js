@@ -3,6 +3,9 @@ const VoiceChannelManager = class {
 
         this.oldState = oldState
         this.newState = newState
+        
+        this.oldId = this.oldState.channelId
+        this.newId = this.newState.channelId
 
         this.state = state => ({
             old: this.oldState,
@@ -13,16 +16,23 @@ const VoiceChannelManager = class {
     }
 
     _filter(filter = null, type = "join") {
-        if (this.oldState.channelId === this.newState.channelId) return false
+        if (this.oldId === this.newId) return false
         if (filter != null && !filter(this.oldState, this.newState)) return false
 
-        if (type === "join") {
-            if (this.newState.channelId === null) return false
+        if (type === "move") {
+            if (this.newId === null && this.oldId === null) return false
+        } else if (type === "join") {
+            if (this.newId === null) return false
         } else if (type === "leave") {
-            if (this.oldState.channelId === null) return false
+            if (this.oldId === null) return false
         }
 
         return true
+    }
+    
+    onMove(handler, filter) {
+        if (!this._filter(filter, "move")) return null
+        return new Promise((resolve, reject) => handler(this.state(this.newState), resolve, reject))
     }
 
     onJoin(handler, filter) {
@@ -35,8 +45,12 @@ const VoiceChannelManager = class {
         return new Promise((resolve, reject) => handler(this.state(this.oldState), resolve, reject))
     }
 
-    findCh(state, value) {
-        return state.guild.channels.cache.find(ch => ch.topic?.includes(value))
+    findCh(s, v) {
+        return s.guild.channels.cache.get(v) || s.guild.channels.cache.find(ch => ch.name === v)
+    }
+    
+    findTopic(s, v) {
+        return s.guild.channels.cache.find(ch => ch.topic?.includes(v))
     }
 }
 
