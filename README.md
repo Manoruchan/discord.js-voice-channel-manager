@@ -49,5 +49,3 @@ client.login("your token here 0w0")
 ```
 
 # Note
-
-Method findCh will find a topic of channels.
